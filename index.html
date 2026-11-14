@@ -4,1280 +4,226 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Temookan — Hanya Pajang Profil, Biarkan HRD Menemukanmu</title>
-  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts: Inter -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-          },
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
           colors: {
-            brand: {
-              50: '#eff6ff',
-              100: '#dbeafe',
-              500: '#2563eb',
-              600: '#1d4ed8',
-              700: '#1e40af',
-              900: '#0f172a',
-            },
-            mint: {
-              50: '#ecfdf5',
-              100: '#d1fae5',
-              500: '#10b981',
-              600: '#059669',
-            }
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#0f172a' },
+            mint: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669' }
           }
         }
       }
     }
   </script>
   <style>
-    /* Kustomisasi halus untuk scrollbar dan animasi transisi */
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-      color: #1e293b;
-      overflow-x: hidden;
-    }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
     .hero-pattern {
       background-color: #0f172a;
       background-image: 
         radial-gradient(at 15% 20%, rgba(37, 99, 235, 0.32) 0px, transparent 50%),
-        radial-gradient(at 85% 25%, rgba(16, 185, 129, 0.28) 0px, transparent 50%),
-        radial-gradient(at 50% 90%, rgba(59, 130, 246, 0.2) 0px, transparent 55%);
+        radial-gradient(at 85% 25%, rgba(16, 185, 129, 0.28) 0px, transparent 50%);
     }
-    .tab-active {
-      background-color: #2563eb;
-      color: #ffffff;
-    }
-    @keyframes pulseDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.25); }
-    }
-    .live-dot {
-      animation: pulseDot 1.8s infinite ease-in-out;
-    }
+    @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .live-dot { animation: pulseDot 1.8s infinite ease-in-out; }
   </style>
 </head>
 <body class="antialiased flex flex-col min-h-screen">
 
-  <!-- TOAST / NOTIFIKASI MENGAMBANG (Pengganti alert()) -->
-  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
-
-  <!-- HEADER / NAVIGASI RESPONSIF -->
+  <!-- HEADER / NAVIGASI -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo -->
-        <button onclick="switchView('beranda')" class="flex items-center gap-2 text-left focus:outline-none group">
-          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-mint-500 flex items-center justify-center text-white font-extrabold text-lg shadow-sm group-hover:scale-105 transition-transform">
-            T
-          </div>
-          <span class="text-xl font-extrabold tracking-tight text-slate-900">
-            Temoo<span class="text-mint-600">kan</span>
-          </span>
-        </button>
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-mint-500 flex items-center justify-center text-white font-extrabold text-lg">T</div>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900">Temoo<span class="text-mint-600">kan</span></span>
+        </a>
 
         <!-- Menu Desktop -->
         <nav class="hidden md:flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
-          <button onclick="switchView('beranda')" data-nav="beranda" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-slate-900">
-            Beranda
-          </button>
-          <button onclick="switchView('etalase')" data-nav="etalase" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-slate-900">
-            Etalase Talenta
-          </button>
-          <button onclick="switchView('kandidat')" data-nav="kandidat" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-slate-900">
-            Area Kandidat
-          </button>
-          <button onclick="switchView('rekruter')" data-nav="rekruter" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-slate-900">
-            Area Rekruter
-          </button>
-          <button onclick="switchView('legal')" data-nav="legal" class="nav-btn px-3.5 py-2 rounded-lg text-sm font-semibold transition-all text-slate-700 hover:text-slate-900">
-            Hukum &amp; Privasi
-          </button>
+          <a href="index.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold bg-white text-brand-600 shadow-sm">Beranda</a>
+          <a href="etalase.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Etalase Talenta</a>
+          <a href="kandidat.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Kandidat</a>
+          <a href="rekruter.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Rekruter</a>
+          <a href="legal.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Hukum &amp; Privasi</a>
         </nav>
 
-        <!-- Indikator Kuota Rekruter Cepat & Hamburger Mobile -->
-        <div class="flex items-center gap-2">
-          <button onclick="switchView('rekruter')" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-mint-50 border border-mint-200 text-mint-700 text-xs font-semibold hover:bg-mint-100 transition">
-            <i data-lucide="wallet" class="w-3.5 h-3.5"></i>
-            <span>Kuota Chat: <strong id="header-quota">0</strong></span>
-          </button>
-          <button id="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100 focus:outline-none">
-            <i data-lucide="menu" class="w-6 h-6"></i>
-          </button>
-        </div>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
     </div>
 
-    <!-- Menu Mobile Dropdown -->
+    <!-- Menu Mobile -->
     <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1.5 shadow-lg">
-      <button onclick="switchView('beranda'); toggleMobileMenu()" data-nav="beranda" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2.5">
-        <i data-lucide="home" class="w-4 h-4"></i> Beranda
-      </button>
-      <button onclick="switchView('etalase'); toggleMobileMenu()" data-nav="etalase" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2.5">
-        <i data-lucide="users" class="w-4 h-4"></i> Etalase Talenta
-      </button>
-      <button onclick="switchView('kandidat'); toggleMobileMenu()" data-nav="kandidat" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2.5">
-        <i data-lucide="user-plus" class="w-4 h-4"></i> Area Kandidat (Daftar / Edit Profil)
-      </button>
-      <button onclick="switchView('rekruter'); toggleMobileMenu()" data-nav="rekruter" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center justify-between">
-        <span class="flex items-center gap-2.5"><i data-lucide="briefcase" class="w-4 h-4"></i> Area Rekruter &amp; Deposit</span>
-        <span class="text-xs px-2 py-0.5 rounded-full bg-mint-100 text-mint-700 font-bold" id="mobile-quota-badge">0 Kuota</span>
-      </button>
-      <button onclick="switchView('legal'); toggleMobileMenu()" data-nav="legal" class="nav-btn w-full text-left px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50 flex items-center gap-2.5">
-        <i data-lucide="shield-check" class="w-4 h-4"></i> Hukum &amp; Privasi (UU PDP &amp; ITE)
-      </button>
+      <a href="index.html" class="block px-4 py-3 rounded-xl text-sm font-bold text-brand-600 bg-brand-50">Beranda</a>
+      <a href="etalase.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Etalase Talenta</a>
+      <a href="kandidat.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Area Kandidat (Daftar / Edit)</a>
+      <a href="rekruter.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Area Rekruter &amp; Deposit</a>
+      <a href="legal.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700 hover:bg-slate-50">Hukum &amp; Privasi</a>
     </div>
   </header>
 
-  <!-- KONTEN UTAMA -->
+  <!-- KONTEN BERANDA -->
   <main class="flex-grow">
-
-    <!-- =========================================================
-         VIEW 1: BERANDA (LANDING PAGE)
-    ========================================================== -->
-    <section id="view-beranda" class="view-section">
-      <!-- Hero Section -->
-      <div class="hero-pattern text-white pt-12 pb-24 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-        <div class="max-w-5xl mx-auto text-center relative z-10">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-mint-100 text-xs sm:text-sm font-medium mb-6">
-            <span class="w-2 h-2 rounded-full bg-mint-500 live-dot"></span>
-            Reverse Job Board Pertama di Indonesia • Ringan &amp; Tanpa Foto
-          </div>
-
-          <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-5">
-            Hanya Pajang Profil.<br />
-            <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-300 to-mint-500">
-              Biarkan HRD Menemukanmu.
-            </span>
-          </h1>
-
-          <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
-            Tak perlu kirim ratusan lamaran. Tampilkan keahlianmu tanpa unggah foto agar super ringan, nomor WhatsApp terkunci aman (UU PDP), dan perusahaan terverifikasi yang akan menyapamu duluan.
-          </p>
-
-          <!-- CTA Buttons -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
-            <button onclick="switchView('kandidat')" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-base shadow-lg shadow-brand-500/30 transition transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
-              <i data-lucide="sparkles" class="w-5 h-5"></i>
-              Buat Profil Talenta (Gratis)
-            </button>
-            <button onclick="switchView('etalase')" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-base backdrop-blur-sm transition flex items-center justify-center gap-2">
-              <i data-lucide="search" class="w-5 h-5"></i>
-              Cari Talenta untuk Perusahaan
-            </button>
-          </div>
+    <div class="hero-pattern text-white pt-12 pb-24 sm:pt-20 sm:pb-28 px-4 sm:px-6 lg:px-8">
+      <div class="max-w-5xl mx-auto text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 text-mint-100 text-xs sm:text-sm font-medium mb-6">
+          <span class="w-2 h-2 rounded-full bg-mint-500 live-dot"></span>
+          Reverse Job Board Indonesia • Ringan &amp; Tanpa Foto
+        </div>
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight mb-5">
+          Hanya Pajang Profil.<br />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-emerald-300 to-mint-500">Biarkan HRD Menemukanmu.</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-slate-300 text-base sm:text-lg leading-relaxed mb-8">
+          Tak perlu kirim ratusan lamaran. Tampilkan keahlianmu tanpa unggah foto agar super ringan, nomor WhatsApp terkunci aman (UU PDP), dan perusahaan terverifikasi yang menyapamu duluan.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5">
+          <a href="kandidat.html" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-brand-500 hover:bg-brand-600 text-white font-bold text-base shadow-lg transition flex items-center justify-center gap-2">
+            <i data-lucide="sparkles" class="w-5 h-5"></i> Buat Profil Talenta (Gratis)
+          </a>
+          <a href="etalase.html" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-base backdrop-blur-sm transition flex items-center justify-center gap-2">
+            <i data-lucide="search" class="w-5 h-5"></i> Cari Talenta untuk Perusahaan
+          </a>
         </div>
       </div>
-
-      <!-- Live Counters Card (Menonjol di batas Hero) -->
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 relative z-20">
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-          <!-- Counter Kandidat -->
-          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-mint-50 text-mint-600 flex items-center justify-center shrink-0">
-                <i data-lucide="users" class="w-7 h-7"></i>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span id="counter-kandidat" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">8.756</span>
-                  <span class="inline-flex items-center text-xs font-bold text-mint-600 bg-mint-50 px-2 py-0.5 rounded-full">
-                    +1 Live
-                  </span>
-                </div>
-                <p class="text-sm font-medium text-slate-500 mt-0.5">Kandidat Bergabung &amp; Siap Kerja</p>
-              </div>
-            </div>
-            <span class="hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
-              <span class="w-2 h-2 rounded-full bg-mint-500 live-dot"></span> Otomatis
-            </span>
-          </div>
-
-          <!-- Counter Rekruter -->
-          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
-                <i data-lucide="building-2" class="w-7 h-7"></i>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span id="counter-rekruter" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">552</span>
-                  <span class="inline-flex items-center text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full">
-                    Terverifikasi
-                  </span>
-                </div>
-                <p class="text-sm font-medium text-slate-500 mt-0.5">Rekruter &amp; Perusahaan Mitra</p>
-              </div>
-            </div>
-            <span class="hidden lg:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">
-              <span class="w-2 h-2 rounded-full bg-brand-500 live-dot"></span> Aktif
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 Pilar Keunggulan -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div class="text-center max-w-2xl mx-auto mb-10">
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Mengapa Memilih Temookan?</h2>
-          <p class="text-slate-600 mt-2 text-sm sm:text-base">Dirancang khusus untuk kecepatan akses mobile, efisiensi rekrutmen, dan kepatuhan regulasi Indonesia.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="w-11 h-11 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center mb-4">
-              <i data-lucide="zap" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Super Ringan Tanpa Foto</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Tanpa unggah foto profil agar halaman terbuka secepat kilat di semua jenis HP, hemat kuota data, serta mencegah bias visual saat rekrutmen.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="w-11 h-11 rounded-xl bg-emerald-50 text-mint-600 flex items-center justify-center mb-4">
-              <i data-lucide="lock" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Privasi Ketat (UU PDP)</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Nomor WhatsApp &amp; email tidak pernah dipajang bebas. Perusahaan wajib menggunakan sistem <strong>Chat Tertutup</strong> internal jika berminat.
-            </p>
-          </div>
-
-          <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition">
-            <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
-              <i data-lucide="edit-3" class="w-6 h-6"></i>
-            </div>
-            <h3 class="text-lg font-bold text-slate-900 mb-2">Tayang Otomatis &amp; Edit Mandiri</h3>
-            <p class="text-sm text-slate-600 leading-relaxed">
-              Profil kandidat langsung tayang secara otomatis begitu selesai diisi, dan pemohon bebas mengedit sendiri kapan saja jika ada salah ketik.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Cuplikan Talenta Terbaru di Beranda -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
-          <div>
-            <h2 class="text-2xl font-extrabold text-slate-900">Talenta Terbaru Siap Kerja</h2>
-            <p class="text-sm text-slate-500">Klik tombol hubungi untuk memulai obrolan tertutup dengan kandidat.</p>
-          </div>
-          <button onclick="switchView('etalase')" class="inline-flex items-center gap-1.5 text-sm font-bold text-brand-600 hover:text-brand-700">
-            Lihat Semua Talenta &amp; Filter <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </button>
-        </div>
-
-        <div id="home-talent-preview" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <!-- Diisi via JavaScript -->
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         VIEW 2: ETALASE TALENTA (PENCARIAN & FILTER)
-    ========================================================== -->
-    <section id="view-etalase" class="view-section hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-        <div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Etalase Talenta Indonesia</h1>
-          <p class="text-sm text-slate-600 mt-1">Temukan kandidat berdasarkan keahlian, domisili, dan preferensi kerja.</p>
-        </div>
-        <div class="flex items-center gap-2 bg-white px-4 py-2.5 rounded-xl border border-slate-200 shadow-sm">
-          <i data-lucide="shield" class="w-4 h-4 text-mint-600"></i>
-          <span class="text-xs font-medium text-slate-600">Kontak WhatsApp disembunyikan demi keamanan UU PDP</span>
-        </div>
-      </div>
-
-      <!-- Bar Pencarian & Filter Lanjutan -->
-      <div class="bg-white p-4 sm:p-5 rounded-2xl border border-slate-200 shadow-sm mb-6">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-          <!-- Cari Kata Kunci / Skill -->
-          <div class="relative">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5"></i>
-            <input type="text" id="filter-keyword" oninput="renderTalentList()" placeholder="Cari keahlian (mis. Excel, React)..." class="w-full pl-10 pr-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500" />
-          </div>
-
-          <!-- Filter Domisili -->
-          <div>
-            <select id="filter-city" onchange="renderTalentList()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
-              <option value="">Semua Domisili / Kota</option>
-              <option value="Jakarta">Jakarta</option>
-              <option value="Bandung">Bandung</option>
-              <option value="Surabaya">Surabaya</option>
-              <option value="Yogyakarta">Yogyakarta</option>
-              <option value="Batam">Batam &amp; Kepri</option>
-              <option value="Medan">Medan</option>
-              <option value="Makassar">Makassar</option>
-            </select>
-          </div>
-
-          <!-- Filter Sistem Kerja -->
-          <div>
-            <select id="filter-workmode" onchange="renderTalentList()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-brand-500">
-              <option value="">Semua Sistem Kerja</option>
-              <option value="WFO">WFO (Kantor)</option>
-              <option value="Remote">Remote (Kerja Jarak Jauh)</option>
-              <option value="Hybrid">Hybrid</option>
-            </select>
-          </div>
-
-          <!-- Tombol Reset Filter -->
-          <button onclick="resetFilters()" class="w-full px-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition flex items-center justify-center gap-2">
-            <i data-lucide="rotate-ccw" class="w-4 h-4"></i> Reset Filter
-          </button>
-        </div>
-      </div>
-
-      <!-- Hasil Pencarian Talenta -->
-      <div class="flex items-center justify-between mb-4">
-        <p class="text-sm text-slate-600">Menampilkan <strong id="talent-result-count" class="text-slate-900">0</strong> kandidat siap kerja</p>
-        <button onclick="switchView('kandidat')" class="text-xs sm:text-sm font-bold text-brand-600 hover:underline">
-          + Tambah Profil Anda ke Daftar Ini
-        </button>
-      </div>
-
-      <div id="etalase-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        <!-- Diisi via JavaScript -->
-      </div>
-    </section>
-
-    <!-- =========================================================
-         VIEW 3: AREA KANDIDAT (DAFTAR OTOMATIS & SELF-EDIT)
-    ========================================================== -->
-    <section id="view-kandidat" class="view-section hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="bg-gradient-to-r from-brand-700 to-brand-500 px-6 py-6 text-white">
-          <div class="flex flex-wrap items-center justify-between gap-2">
-            <div>
-              <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-2">
-                Area Kandidat • Tayang Otomatis
-              </span>
-              <h1 id="candidate-form-title" class="text-2xl font-extrabold">Buat Profil Talenta Baru</h1>
-              <p class="text-sm text-blue-100 mt-1">Tanpa perlu unggah foto. Profil Anda langsung tayang otomatis dan bisa diedit kapan saja.</p>
-            </div>
-            <div id="self-edit-badge" class="hidden bg-mint-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow">
-              Mode Edit Mandiri Aktif
-            </div>
-          </div>
-        </div>
-
-        <form id="candidate-form" onsubmit="handleCandidateSubmit(event)" class="p-6 space-y-5">
-          <input type="hidden" id="cand-id" value="" />
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap *</label>
-              <input type="text" id="cand-name" required placeholder="Contoh: Rina Marlina" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
-            </div>
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5">Domisili (Kota) *</label>
-              <select id="cand-city" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                <option value="Jakarta">Jakarta</option>
-                <option value="Bandung">Bandung</option>
-                <option value="Surabaya">Surabaya</option>
-                <option value="Yogyakarta">Yogyakarta</option>
-                <option value="Batam">Batam</option>
-                <option value="Medan">Medan</option>
-                <option value="Makassar">Makassar</option>
-              </select>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Headline Profesi / Posisi Diincar *</label>
-            <input type="text" id="cand-headline" required placeholder="Contoh: Staf Akuntansi & Pajak | Mahir Excel & Accurate" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5">Preferensi Sistem Kerja *</label>
-              <select id="cand-workmode" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
-                <option value="WFO">WFO (Kerja di Kantor)</option>
-                <option value="Remote">Remote (Kerja Jarak Jauh)</option>
-                <option value="Hybrid">Hybrid (Campuran)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pendidikan / Pengalaman Singkat *</label>
-              <input type="text" id="cand-exp" required placeholder="Contoh: S1 Akuntansi • 2 Tahun Pengalaman" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Keahlian Utama / Skills (Pisahkan dengan koma) *</label>
-            <input type="text" id="cand-skills" required placeholder="Contoh: Microsoft Excel, Pajak Brevet A/B, Pembukuan, Administrasi" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Ringkasan Diri &amp; Portofolio (Tanpa Foto) *</label>
-            <textarea id="cand-bio" rows="3" required placeholder="Jelaskan secara singkat keunggulan dan pencapaian Anda..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
-          </div>
-
-          <!-- Kotak Info Privasi WhatsApp -->
-          <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
-            <i data-lucide="shield-check" class="w-5 h-5 text-mint-600 shrink-0 mt-0.5"></i>
-            <div class="text-xs sm:text-sm text-emerald-900">
-              <strong>Jaminan Privasi UU PDP:</strong> Nomor WhatsApp Anda tidak disimpan atau dipublikasikan secara terbuka. Perusahaan hanya dapat menghubungi Anda melalui <strong>Chat Tertutup</strong> di dalam platform.
-            </div>
-          </div>
-
-          <!-- Persetujuan Syarat & Ketentuan -->
-          <label class="flex items-start gap-2.5 cursor-pointer">
-            <input type="checkbox" id="cand-agree" required class="mt-1 w-4 h-4 text-brand-600 rounded border-slate-300 focus:ring-brand-500" />
-            <span class="text-xs sm:text-sm text-slate-600">
-              Saya menyatakan data di atas benar, telah memasuki usia legal angkatan kerja, serta menyetujui <button type="button" onclick="switchView('legal')" class="text-brand-600 font-semibold underline">Syarat &amp; Ketentuan dan Kebijakan Privasi</button> Temookan.
-            </span>
-          </label>
-
-          <div class="flex flex-col sm:flex-row items-center gap-3 pt-2">
-            <button type="submit" id="cand-submit-btn" class="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
-              <i data-lucide="check-circle-2" class="w-4 h-4"></i>
-              <span>Tayangkan Profil Otomatis</span>
-            </button>
-            <button type="button" id="cand-cancel-edit" onclick="resetCandidateForm()" class="hidden w-full sm:w-auto px-5 py-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
-              Batal Edit / Buat Baru
-            </button>
-          </div>
-        </form>
-      </div>
-
-      <!-- Panel Riwayat Profil yang Dibuat Pengguna (Untuk Demo Self-Edit) -->
-      <div id="my-profile-box" class="hidden mt-6 bg-white rounded-2xl border border-brand-200 p-5 shadow-sm">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <span class="text-xs font-bold text-brand-600 uppercase">Profil Anda Saat Ini (Tayang)</span>
-            <h3 id="my-profile-name" class="text-lg font-bold text-slate-900 mt-0.5">-</h3>
-            <p id="my-profile-headline" class="text-sm text-slate-600">-</p>
-          </div>
-          <button onclick="loadOwnProfileForEdit()" class="px-4 py-2.5 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-sm transition flex items-center justify-center gap-2 shrink-0">
-            <i data-lucide="pencil" class="w-4 h-4"></i> Edit Profil Saya (Jika Salah Input)
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         VIEW 4: AREA REKRUTER (DEPOSIT SALDO & CHAT TERTUTUP)
-    ========================================================== -->
-    <section id="view-rekruter" class="view-section hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Kolom Kiri: Kartu Deposit & Saldo Rekruter -->
-        <div class="lg:col-span-1 space-y-5">
-          <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg relative overflow-hidden">
-            <div class="flex items-center justify-between mb-4">
-              <span class="text-xs font-bold uppercase tracking-wider text-mint-400 bg-mint-500/15 px-2.5 py-1 rounded-full">
-                Akun Perusahaan Mitra
-              </span>
-              <i data-lucide="building-2" class="w-5 h-5 text-slate-400"></i>
-            </div>
-            <h2 class="text-lg font-bold">PT Nusantara Digital Maju</h2>
-            <p class="text-xs text-slate-400 mt-0.5">Status: Terverifikasi (Anti-Loker Fiktif)</p>
-
-            <div class="mt-6 pt-5 border-t border-slate-800">
-              <p class="text-xs text-slate-400">Sisa Kuota Akses Chat Kandidat</p>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span id="recruiter-quota-display" class="text-4xl font-extrabold text-mint-400">0</span>
-                <span class="text-sm text-slate-300">Kandidat</span>
-              </div>
-            </div>
-
-            <div class="mt-6 bg-slate-800/80 rounded-xl p-4 border border-slate-700">
-              <div class="flex items-center justify-between text-sm font-bold text-white mb-1">
-                <span>Paket Deposit Standar</span>
-                <span class="text-mint-400">Rp 150.000</span>
-              </div>
-              <p class="text-xs text-slate-300 leading-relaxed mb-3.5">
-                Buka akses chat tertutup hingga <strong>200 kandidat</strong> pilihan. Mendukung operasional &amp; keamanan server Temookan.
-              </p>
-              <button onclick="simulateDeposit()" class="w-full py-3 px-4 rounded-xl bg-mint-500 hover:bg-mint-600 text-slate-950 font-extrabold text-sm transition shadow-md flex items-center justify-center gap-2">
-                <i data-lucide="plus-circle" class="w-4 h-4"></i>
-                Deposit Rp 150.000 (+200 Akses)
-              </button>
-            </div>
-          </div>
-
-          <!-- Simulasi Registrasi Rekruter Baru (Untuk menguji Live Counter Rekruter) -->
-          <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
-            <h3 class="text-sm font-bold text-slate-900 mb-1">Simulasi Pendaftaran Rekruter Baru</h3>
-            <p class="text-xs text-slate-500 mb-3">Uji penambahan otomatis angka Rekruter Mitra di halaman depan.</p>
-            <button onclick="simulateNewRecruiter()" class="w-full py-2.5 px-4 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-xs transition flex items-center justify-center gap-1.5">
-              <i data-lucide="user-check" class="w-4 h-4"></i> Daftarkan Perusahaan Mitra Baru (+1)
-            </button>
-          </div>
-        </div>
-
-        <!-- Kolom Kanan: Daftar Kandidat yang Sudah Dibuka Akses Chat-nya -->
-        <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
-            <div>
-              <h2 class="text-xl font-extrabold text-slate-900">Ruang Chat Tertutup Perusahaan</h2>
-              <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Daftar kandidat yang akses obrolannya telah Anda buka menggunakan saldo deposit.</p>
-            </div>
-            <button onclick="switchView('etalase')" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">
-              + Cari Kandidat
-            </button>
-          </div>
-
-          <div id="unlocked-chats-list" class="space-y-3">
-            <!-- Diisi dinamis via JavaScript -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
-         VIEW 5: HUKUM & PRIVASI (UU ITE, UU PDP, KETENAGAKERJAAN)
-    ========================================================== -->
-    <section id="view-legal" class="view-section hidden max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-        <div class="bg-slate-900 text-white px-6 py-8 text-center">
-          <h1 class="text-2xl sm:text-3xl font-extrabold">Pusat Kebijakan &amp; Legalitas Temookan</h1>
-          <p class="text-sm text-slate-300 mt-2 max-w-xl mx-auto">
-            Kepatuhan terhadap UU Ketenagakerjaan, UU Informasi dan Transaksi Elektronik (UU ITE), serta UU Pelindungan Data Pribadi (UU PDP).
-          </p>
-        </div>
-
-        <!-- Tab Legal -->
-        <div class="flex border-b border-slate-200 bg-slate-50">
-          <button onclick="switchLegalTab('terms')" id="legal-tab-terms" class="flex-1 py-3.5 px-4 text-sm font-bold text-brand-600 bg-white border-b-2 border-brand-600 transition">
-            Syarat &amp; Ketentuan
-          </button>
-          <button onclick="switchLegalTab('privacy')" id="legal-tab-privacy" class="flex-1 py-3.5 px-4 text-sm font-bold text-slate-500 hover:text-slate-800 transition">
-            Kebijakan Privasi (UU PDP)
-          </button>
-        </div>
-
-        <div class="p-6 sm:p-8 text-sm text-slate-700 leading-relaxed space-y-5">
-          <!-- Konten Syarat & Ketentuan -->
-          <div id="legal-content-terms" class="space-y-4">
-            <span class="inline-block text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Pembaruan: November 2026</span>
-            <div>
-              <h2 class="text-base font-bold text-slate-900 mb-1">1. Posisi &amp; Penafian Hukum (Bukan P3MI/LPTKS)</h2>
-              <p>Temookan adalah platform digital berbasis <em>reverse job board</em> yang berperan murni sebagai penyedia ruang temu elektronik sesuai koridor <strong>UU ITE</strong>. Temookan <strong>bukan</strong> agen penyalur tenaga kerja berlisensi (P3MI/LPTKS) dan tidak memungut biaya apa pun dari pencari kerja.</p>
-            </div>
-            <div>
-              <h2 class="text-base font-bold text-slate-900 mb-1">2. Ketentuan Kandidat (Tanpa Foto &amp; Edit Mandiri)</h2>
-              <p>Kandidat menjamin keaslian riwayat keahlian yang dicantumkan. Platform tidak mewajibkan foto profil demi menjaga kecepatan akses serta mencegah diskriminasi. Kandidat bertanggung jawab memperbarui datanya secara mandiri jika terdapat kekeliruan.</p>
-            </div>
-            <div>
-              <h2 class="text-base font-bold text-slate-900 mb-1">3. Ketentuan Rekruter &amp; Deposit Akses</h2>
-              <p>Perusahaan mitra wajib terverifikasi untuk mencegah penipuan lowongan fiktif. Akses obrolan tertutup dengan kandidat memerlukan saldo deposit (contoh: Rp 150.000 untuk 200 kuota akses kandidat) dan hanya boleh digunakan untuk penawaran kerja yang sah sesuai peraturan ketenagakerjaan Indonesia.</p>
-            </div>
-          </div>
-
-          <!-- Konten Kebijakan Privasi -->
-          <div id="legal-content-privacy" class="hidden space-y-4">
-            <span class="inline-block text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1 rounded-full">Kepatuhan UU No. 27 Tahun 2022 (UU PDP)</span>
-            <div>
-              <h2 class="text-base font-bold text-slate-900 mb-1">1. Minimalisasi Data &amp; Perlindungan Nomor WhatsApp</h2>
-              <p>Temookan menerapkan prinsip minimalisasi data: tidak mengumpulkan foto wajah kandidat dan <strong>tidak menampilkan nomor WhatsApp maupun email pribadi secara terbuka</strong>. Komunikasi awal wajib melalui ruang obrolan tertutup internal platform.</p>
-            </div>
-            <div>
-              <h2 class="text-base font-bold text-slate-900 mb-1">2. Hak Subjek Data Pribadi</h2>
-              <p>Sesuai amanat UU PDP, kandidat memiliki kendali penuh untuk mengubah, memperbaiki kesalahan input secara mandiri kapan saja, maupun meminta penghapusan akun beserta seluruh datanya secara permanen dari sistem Temookan.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- =========================================================
-       MODAL OBROLAN TERTUTUP (CLOSED CHAT SYSTEM)
-  ========================================================== -->
-  <div id="chat-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-white rounded-2xl max-w-lg w-full shadow-2xl border border-slate-200 overflow-hidden flex flex-col max-h-[88vh]">
-      <!-- Header Modal Chat -->
-      <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-3">
-          <div id="chat-avatar" class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center font-extrabold text-white">
-            RM
-          </div>
-          <div>
-            <h3 id="chat-target-name" class="font-bold text-sm sm:text-base">Nama Kandidat</h3>
-            <p class="text-xs text-mint-400 flex items-center gap-1">
-              <i data-lucide="lock" class="w-3 h-3"></i> Ruang Chat Tertutup • No. WA Terlindungi
-            </p>
-          </div>
-        </div>
-        <button onclick="closeChatModal()" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- Area Pesan -->
-      <div id="chat-messages-box" class="p-4 space-y-3 overflow-y-auto flex-grow bg-slate-50 min-h-[220px]">
-        <!-- Pesan diisi via JS -->
-      </div>
-
-      <!-- Input Kirim Pesan -->
-      <form onsubmit="sendChatMessage(event)" class="p-3.5 bg-white border-t border-slate-200 flex items-center gap-2">
-        <input type="text" id="chat-input" required placeholder="Tulis undangan wawancara resmi..." class="flex-grow px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-500" />
-        <button type="submit" class="px-4 py-2.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm transition flex items-center gap-1.5 shrink-0">
-          <span>Kirim</span>
-          <i data-lucide="send" class="w-4 h-4"></i>
-        </button>
-      </form>
     </div>
-  </div>
+
+    <!-- Live Counters (Murni Data Nyata dari Firebase mulai 0) -->
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 -mt-14 relative z-20">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-mint-50 text-mint-600 flex items-center justify-center shrink-0">
+              <i data-lucide="users" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="counter-kandidat" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">0</span>
+                <span class="inline-flex items-center text-xs font-bold text-mint-600 bg-mint-50 px-2 py-0.5 rounded-full">Data Riil</span>
+              </div>
+              <p class="text-sm font-medium text-slate-500 mt-0.5">Kandidat Bergabung &amp; Siap Kerja</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200/80 flex items-center justify-between">
+          <div class="flex items-center gap-4">
+            <div class="w-14 h-14 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shrink-0">
+              <i data-lucide="building-2" class="w-7 h-7"></i>
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="counter-rekruter" class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">0</span>
+                <span class="inline-flex items-center text-xs font-bold text-brand-600 bg-brand-50 px-2 py-0.5 rounded-full">Data Riil</span>
+              </div>
+              <p class="text-sm font-medium text-slate-500 mt-0.5">Rekruter &amp; Perusahaan Mitra</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 Pilar Keunggulan -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Mengapa Memilih Temookan?</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-11 h-11 rounded-xl bg-blue-50 text-brand-600 flex items-center justify-center mb-4"><i data-lucide="zap" class="w-6 h-6"></i></div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Super Ringan Tanpa Foto</h3>
+          <p class="text-sm text-slate-600">Tanpa unggah foto profil agar halaman terbuka secepat kilat di semua jenis HP dan hemat kuota.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-11 h-11 rounded-xl bg-emerald-50 text-mint-600 flex items-center justify-center mb-4"><i data-lucide="lock" class="w-6 h-6"></i></div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Privasi Ketat (UU PDP)</h3>
+          <p class="text-sm text-slate-600">Nomor WhatsApp &amp; email tidak dipajang bebas. Perusahaan wajib menggunakan sistem Chat Tertutup.</p>
+        </div>
+        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="w-11 h-11 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4"><i data-lucide="edit-3" class="w-6 h-6"></i></div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Tayang Otomatis &amp; Edit Mandiri</h3>
+          <p class="text-sm text-slate-600">Profil langsung tayang otomatis ke database cloud dan bebas diedit sendiri kapan saja.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cuplikan 3 Talenta Terbaru dari Database -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-extrabold text-slate-900">Talenta Terbaru Siap Kerja</h2>
+        <a href="etalase.html" class="text-sm font-bold text-brand-600 hover:underline flex items-center gap-1">Lihat Semua <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+      </div>
+      <div id="home-talent-preview" class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <p class="text-sm text-slate-500 col-span-full">Memuat data talenta dari database...</p>
+      </div>
+    </div>
+  </main>
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <div class="w-7 h-7 rounded-lg bg-slate-900 text-white flex items-center justify-center font-extrabold text-sm">T</div>
-          <span class="font-extrabold text-slate-900">Temookan</span>
-          <span class="text-xs text-slate-400 ml-1">• Reverse Job Board Indonesia</span>
-        </div>
-        <div class="flex flex-wrap items-center justify-center gap-5 text-xs sm:text-sm font-medium text-slate-600">
-          <button onclick="switchView('beranda')" class="hover:text-brand-600">Beranda</button>
-          <button onclick="switchView('etalase')" class="hover:text-brand-600">Etalase Talenta</button>
-          <button onclick="switchView('legal'); switchLegalTab('terms')" class="hover:text-brand-600">Syarat &amp; Ketentuan</button>
-          <button onclick="switchView('legal'); switchLegalTab('privacy')" class="hover:text-brand-600">Kebijakan Privasi (UU PDP)</button>
-        </div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-500">&copy; 2026 Temookan. Reverse Job Board Indonesia.</div>
+      <div class="flex gap-5 text-xs font-medium text-slate-600">
+        <a href="etalase.html" class="hover:text-brand-600">Etalase Talenta</a>
+        <a href="kandidat.html" class="hover:text-brand-600">Daftar Kandidat</a>
+        <a href="legal.html" class="hover:text-brand-600">Hukum &amp; Privasi</a>
       </div>
-      <p class="text-center sm:text-left text-xs text-slate-400 mt-5">
-        &copy; 2026 Temookan. Seluruh hak cipta dilindungi undang-undang. Bukan agen penyalur P3MI/LPTKS.
-      </p>
     </div>
   </footer>
 
-  <!-- JAVASCRIPT LOGIKA APLIKASI -->
-  <script>
-    // ==========================================
-    // 1. STATE & DATA AWAL APLIKASI
-    // ==========================================
-    let candidateCount = 8756;
-    let recruiterCount = 552;
-    let recruiterQuota = 0; // Awal 0 kuota, bertambah +200 setelah deposit Rp150.000
-    let myCreatedCandidateId = null;
-    let activeChatCandidateId = null;
+  <!-- SKRIP LIVE COUNTER & PREVIEW DARI FIREBASE -->
+  <script type="module">
+    import { db } from "./firebase-config.js";
+    import { collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-    // Daftar kandidat awal (Tanpa Foto — hanya inisial)
-    let candidates = [
-      {
-        id: 'cand-1',
-        name: 'Ayu Pertiwi',
-        city: 'Jakarta',
-        headline: 'Spesialis Pajak & Akuntansi | Brevet A/B',
-        workmode: 'Hybrid',
-        exp: 'S1 Akuntansi • 3 Tahun Pengalaman',
-        skills: ['Microsoft Excel', 'Pajak Brevet A/B', 'Accurate', 'Laporan Keuangan'],
-        bio: 'Berpengalaman menyusun laporan keuangan bulanan dan pelaporan SPT Masa/Tahunan untuk perusahaan ritel dan jasa.',
-        unlocked: false,
-        messages: []
-      },
-      {
-        id: 'cand-2',
-        name: 'Tio Nugroho',
-        city: 'Bandung',
-        headline: 'Frontend Web Developer | React & Tailwind CSS',
-        workmode: 'Remote',
-        exp: 'S1 Informatika • 2 Tahun Pengalaman',
-        skills: ['JavaScript', 'React', 'Tailwind CSS', 'REST API'],
-        bio: 'Fokus membangun antarmuka web yang ringan, responsif di perangkat seluler, dan ramah SEO.',
-        unlocked: false,
-        messages: []
-      },
-      {
-        id: 'cand-3',
-        name: 'Siti Rahmawati',
-        city: 'Batam',
-        headline: 'Admin Logistik & Ekspor-Impor | Dokumentasi Kepabeanan',
-        workmode: 'WFO',
-        exp: 'D3 Manajemen Logistik • 4 Tahun Pengalaman',
-        skills: ['Administrasi Ekspor', 'Inventory Control', 'SAP Dasar', 'Koordinasi Vendor'],
-        bio: 'Terbiasa menangani dokumen pengiriman barang kawasan industri Batam dengan ketelitian tinggi.',
-        unlocked: false,
-        messages: []
-      },
-      {
-        id: 'cand-4',
-        name: 'Dimas Prakoso',
-        city: 'Surabaya',
-        headline: 'Digital Marketing & Performance Ads Specialist',
-        workmode: 'Hybrid',
-        exp: 'S1 Ilmu Komunikasi • 3 Tahun Pengalaman',
-        skills: ['Meta Ads', 'Google Ads', 'SEO Copywriting', 'Analitik Data'],
-        bio: 'Berhasil meningkatkan konversi penjualan UMKM hingga 2,5x lipat melalui kampanye iklan terukur.',
-        unlocked: false,
-        messages: []
-      },
-      {
-        id: 'cand-5',
-        name: 'Nadia Kusuma',
-        city: 'Yogyakarta',
-        headline: 'UI/UX Designer & Product Researcher',
-        workmode: 'Remote',
-        exp: 'S1 Desain Komunikasi Visual • 2 Tahun Pengalaman',
-        skills: ['Figma', 'User Research', 'Wireframing', 'Design System'],
-        bio: 'Merancang pengalaman aplikasi mobile yang bersih, intuitif, dan mudah dipahami oleh pengguna awam.',
-        unlocked: false,
-        messages: []
-      },
-      {
-        id: 'cand-6',
-        name: 'Budi Santoso',
-        city: 'Medan',
-        headline: 'Supervisor Operasional Gudang & Distribusi',
-        workmode: 'WFO',
-        exp: 'S1 Teknik Industri • 5 Tahun Pengalaman',
-        skills: ['Manajemen Gudang', 'Supply Chain', 'Kepemimpinan Tim', 'K3 Umum'],
-        bio: 'Mengelola efisiensi stok barang FMCG dan ketepatan jadwal pengiriman armada distribusi regional.',
-        unlocked: false,
-        messages: []
-      }
-    ];
-
-    // Warna avatar inisial yang cerah namun bersih
-    const avatarColors = [
-      'bg-blue-600',
-      'bg-emerald-600',
-      'bg-indigo-600',
-      'bg-teal-600',
-      'bg-sky-600',
-      'bg-cyan-700'
-    ];
-
-    // ==========================================
-    // 2. FUNGSI NAVIGASI & UI HELPERS
-    // ==========================================
-    function switchView(viewName) {
-      document.querySelectorAll('.view-section').forEach(sec => sec.classList.add('hidden'));
-      const target = document.getElementById(`view-${viewName}`);
-      if (target) target.classList.remove('hidden');
-
-      // Perbarui highlight tombol navigasi
-      document.querySelectorAll('.nav-btn').forEach(btn => {
-        if (btn.dataset.nav === viewName) {
-          btn.classList.add('bg-white', 'text-brand-600', 'shadow-sm');
-        } else {
-          btn.classList.remove('bg-white', 'text-brand-600', 'shadow-sm');
-        }
-      });
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-      if (viewName === 'etalase') renderTalentList();
-      if (viewName === 'rekruter') renderUnlockedChats();
-      lucide.createIcons();
-    }
-
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    }
-
-    function showToast(title, message, type = 'success') {
-      const container = document.getElementById('toast-container');
-      const toast = document.createElement('div');
-      const borderClass = type === 'error' ? 'border-rose-200 bg-rose-50 text-rose-900' : 'border-emerald-200 bg-white text-slate-900';
-      const iconColor = type === 'error' ? 'text-rose-600' : 'text-mint-600';
-      const iconName = type === 'error' ? 'alert-circle' : 'check-circle-2';
-
-      toast.className = `pointer-events-auto p-4 rounded-2xl border shadow-lg ${borderClass} flex items-start gap-3 transition-all duration-300 transform translate-y-2 opacity-0`;
-      toast.innerHTML = `
-        <i data-lucide="${iconName}" class="w-5 h-5 ${iconColor} shrink-0 mt-0.5"></i>
-        <div class="text-xs sm:text-sm">
-          <p class="font-bold">${title}</p>
-          <p class="text-slate-600 mt-0.5">${message}</p>
-        </div>
-      `;
-      container.appendChild(toast);
-      lucide.createIcons();
-
-      requestAnimationFrame(() => {
-        toast.classList.remove('translate-y-2', 'opacity-0');
-      });
-
-      setTimeout(() => {
-        toast.classList.add('opacity-0', 'translate-y-2');
-        setTimeout(() => toast.remove(), 300);
-      }, 4200);
-    }
+    const avatarColors = ['bg-blue-600', 'bg-emerald-600', 'bg-indigo-600', 'bg-teal-600'];
 
     function getInitials(name) {
-      const parts = name.trim().split(/\s+/);
-      if (parts.length === 1) return parts[0].substring(0, 2).toUpperCase();
-      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+      const parts = (name || 'U').trim().split(/\s+/);
+      return parts.length === 1 ? parts[0].substring(0, 2).toUpperCase() : (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
     }
 
-    function updateCountersUI() {
-      document.getElementById('counter-kandidat').textContent = candidateCount.toLocaleString('id-ID');
-      document.getElementById('counter-rekruter').textContent = recruiterCount.toLocaleString('id-ID');
-      document.getElementById('header-quota').textContent = recruiterQuota;
-      document.getElementById('mobile-quota-badge').textContent = `${recruiterQuota} Kuota`;
-      document.getElementById('recruiter-quota-display').textContent = recruiterQuota;
-    }
+    // Pantau jumlah kandidat riil dari Firestore
+    onSnapshot(collection(db, "kandidat"), (snapshot) => {
+      const list = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      document.getElementById('counter-kandidat').textContent = list.length.toLocaleString('id-ID');
 
-    // ==========================================
-    // 3. RENDER KARTU TALENTA (TANPA FOTO)
-    // ==========================================
-    function createTalentCardHTML(cand, index) {
-      const colorClass = avatarColors[index % avatarColors.length];
-      const initials = getInitials(cand.name);
-      const isMine = cand.id === myCreatedCandidateId;
-
-      const skillsHTML = cand.skills.slice(0, 4).map(skill => `
-        <span class="px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs font-medium">
-          ${skill}
-        </span>
-      `).join('');
-
-      const actionBtnHTML = cand.unlocked
-        ? `<button onclick="openChatModal('${cand.id}')" class="w-full py-2.5 px-4 rounded-xl bg-mint-600 hover:bg-mint-700 text-white font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2">
-            <i data-lucide="message-square" class="w-4 h-4"></i> Lanjutkan Chat Tertutup
-          </button>`
-        : `<button onclick="unlockAndChat('${cand.id}')" class="w-full py-2.5 px-4 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs sm:text-sm transition flex items-center justify-center gap-2">
-            <i data-lucide="lock-open" class="w-4 h-4"></i> Buka Akses Chat Tertutup
-          </button>`;
-
-      return `
-        <div class="bg-white rounded-2xl border ${isMine ? 'border-brand-400 ring-2 ring-brand-100' : 'border-slate-200/90'} p-5 shadow-sm hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <!-- Header Kartu (Avatar Inisial Tanpa Foto) -->
-            <div class="flex items-start justify-between gap-3 mb-3.5">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-xl ${colorClass} text-white font-extrabold text-base flex items-center justify-center shrink-0 shadow-sm">
-                  ${initials}
-                </div>
-                <div>
-                  <div class="flex items-center gap-1.5 flex-wrap">
-                    <h3 class="font-bold text-slate-900 text-base">${cand.name}</h3>
-                    ${isMine ? '<span class="text-[10px] font-bold bg-brand-100 text-brand-700 px-2 py-0.5 rounded-full">Profil Anda</span>' : ''}
-                  </div>
-                  <p class="text-xs text-slate-500 flex items-center gap-1 mt-0.5">
-                    <i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-400"></i> ${cand.city} • <span class="font-semibold text-mint-600">${cand.workmode}</span>
-                  </p>
-                </div>
-              </div>
-              <span class="px-2.5 py-1 rounded-full bg-emerald-50 text-mint-700 text-[11px] font-bold shrink-0">
-                Siap Kerja
-              </span>
-            </div>
-
-            <!-- Headline & Pengalaman -->
-            <p class="font-bold text-slate-800 text-sm mb-1.5 leading-snug">${cand.headline}</p>
-            <p class="text-xs text-slate-500 mb-3">${cand.exp}</p>
-            <p class="text-xs text-slate-600 leading-relaxed mb-4 line-clamp-2">${cand.bio}</p>
-
-            <!-- Tags Keahlian -->
-            <div class="flex flex-wrap gap-1.5 mb-4">
-              ${skillsHTML}
-            </div>
-          </div>
-
-          <!-- Footer Kartu: Proteksi WA & Tombol Chat -->
-          <div class="pt-3.5 border-t border-slate-100 space-y-2.5">
-            <div class="flex items-center justify-between text-[11px] text-slate-400">
-              <span class="flex items-center gap-1"><i data-lucide="eye-off" class="w-3.5 h-3.5"></i> No. WA Disembunyikan</span>
-              <span>${cand.unlocked ? 'Akses Terbuka' : '1 Kuota Deposit'}</span>
-            </div>
-            ${actionBtnHTML}
-            ${isMine ? `
-              <button onclick="switchView('kandidat'); loadOwnProfileForEdit();" class="w-full py-2 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition flex items-center justify-center gap-1.5">
-                <i data-lucide="pencil" class="w-3.5 h-3.5"></i> Edit Profil Sendiri
-              </button>
-            ` : ''}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderHomePreview() {
-      const container = document.getElementById('home-talent-preview');
-      container.innerHTML = candidates.slice(0, 3).map((c, idx) => createTalentCardHTML(c, idx)).join('');
-      lucide.createIcons();
-    }
-
-    function renderTalentList() {
-      const keyword = (document.getElementById('filter-keyword')?.value || '').toLowerCase().trim();
-      const city = document.getElementById('filter-city')?.value || '';
-      const workmode = document.getElementById('filter-workmode')?.value || '';
-
-      const filtered = candidates.filter(cand => {
-        const matchCity = !city || cand.city.toLowerCase() === city.toLowerCase();
-        const matchMode = !workmode || cand.workmode.toLowerCase() === workmode.toLowerCase();
-        const matchKeyword = !keyword ||
-          cand.name.toLowerCase().includes(keyword) ||
-          cand.headline.toLowerCase().includes(keyword) ||
-          cand.skills.some(s => s.toLowerCase().includes(keyword));
-        return matchCity && matchMode && matchKeyword;
-      });
-
-      document.getElementById('talent-result-count').textContent = filtered.length;
-      const grid = document.getElementById('etalase-grid');
-
-      if (filtered.length === 0) {
-        grid.innerHTML = `
-          <div class="col-span-full bg-white rounded-2xl border border-slate-200 p-10 text-center">
-            <p class="text-base font-bold text-slate-800">Tidak ada kandidat yang cocok dengan filter tersebut.</p>
-            <p class="text-sm text-slate-500 mt-1">Coba ubah kata kunci keahlian atau reset filter pencarian.</p>
-          </div>
-        `;
-      } else {
-        grid.innerHTML = filtered.map((c, idx) => createTalentCardHTML(c, idx)).join('');
-      }
-      lucide.createIcons();
-    }
-
-    function resetFilters() {
-      document.getElementById('filter-keyword').value = '';
-      document.getElementById('filter-city').value = '';
-      document.getElementById('filter-workmode').value = '';
-      renderTalentList();
-    }
-
-    // ==========================================
-    // 4. LOGIKA PENDAFTARAN & SELF-EDIT KANDIDAT
-    // ==========================================
-    function handleCandidateSubmit(event) {
-      event.preventDefault();
-
-      const editId = document.getElementById('cand-id').value;
-      const name = document.getElementById('cand-name').value.trim();
-      const city = document.getElementById('cand-city').value;
-      const headline = document.getElementById('cand-headline').value.trim();
-      const workmode = document.getElementById('cand-workmode').value;
-      const exp = document.getElementById('cand-exp').value.trim();
-      const skillsRaw = document.getElementById('cand-skills').value;
-      const bio = document.getElementById('cand-bio').value.trim();
-
-      const skills = skillsRaw.split(',').map(s => s.trim()).filter(Boolean);
-
-      if (editId) {
-        // Mode Edit Mandiri (Self-Edit)
-        const idx = candidates.findIndex(c => c.id === editId);
-        if (idx !== -1) {
-          candidates[idx] = {
-            ...candidates[idx],
-            name,
-            city,
-            headline,
-            workmode,
-            exp,
-            skills: skills.length ? skills : ['Umum'],
-            bio
-          };
-          showToast('Perubahan Tersimpan!', 'Profil Anda berhasil diperbarui secara mandiri dan langsung tayang.');
-        }
-      } else {
-        // Mode Pendaftaran Baru (Otomatis Tayang & Tambah Live Counter)
-        const newId = 'cand-' + Date.now();
-        const newCandidate = {
-          id: newId,
-          name,
-          city,
-          headline,
-          workmode,
-          exp,
-          skills: skills.length ? skills : ['Umum'],
-          bio,
-          unlocked: false,
-          messages: []
-        };
-
-        candidates.unshift(newCandidate);
-        myCreatedCandidateId = newId;
-        candidateCount += 1;
-        updateCountersUI();
-
-        showToast('Profil Tayang Otomatis!', 'Selamat! Profil Anda langsung aktif di etalase dan jumlah kandidat bertambah.');
-      }
-
-      // Perbarui kotak profil milik sendiri untuk kemudahan self-edit
-      updateMyProfileBox();
-      renderHomePreview();
-      renderTalentList();
-      switchView('etalase');
-    }
-
-    function updateMyProfileBox() {
-      const box = document.getElementById('my-profile-box');
-      if (!myCreatedCandidateId) {
-        box.classList.add('hidden');
+      const previewContainer = document.getElementById('home-talent-preview');
+      if (list.length === 0) {
+        previewContainer.innerHTML = `<div class="col-span-full bg-white p-6 rounded-2xl border border-slate-200 text-center text-sm text-slate-500">Belum ada kandidat terdaftar. Jadilah yang pertama mendaftar di <a href="kandidat.html" class="text-brand-600 font-bold underline">Area Kandidat</a>!</div>`;
         return;
       }
-      const mine = candidates.find(c => c.id === myCreatedCandidateId);
-      if (mine) {
-        box.classList.remove('hidden');
-        document.getElementById('my-profile-name').textContent = `${mine.name} (${mine.city} • ${mine.workmode})`;
-        document.getElementById('my-profile-headline').textContent = mine.headline;
-      }
-    }
 
-    function loadOwnProfileForEdit() {
-      if (!myCreatedCandidateId) return;
-      const mine = candidates.find(c => c.id === myCreatedCandidateId);
-      if (!mine) return;
-
-      document.getElementById('cand-id').value = mine.id;
-      document.getElementById('cand-name').value = mine.name;
-      document.getElementById('cand-city').value = mine.city;
-      document.getElementById('cand-headline').value = mine.headline;
-      document.getElementById('cand-workmode').value = mine.workmode;
-      document.getElementById('cand-exp').value = mine.exp;
-      document.getElementById('cand-skills').value = mine.skills.join(', ');
-      document.getElementById('cand-bio').value = mine.bio;
-      document.getElementById('cand-agree').checked = true;
-
-      document.getElementById('candidate-form-title').textContent = 'Edit Profil Anda (Self-Edit)';
-      document.getElementById('self-edit-badge').classList.remove('hidden');
-      document.getElementById('cand-submit-btn').querySelector('span').textContent = 'Simpan Perubahan Profil';
-      document.getElementById('cand-cancel-edit').classList.remove('hidden');
-    }
-
-    function resetCandidateForm() {
-      document.getElementById('candidate-form').reset();
-      document.getElementById('cand-id').value = '';
-      document.getElementById('candidate-form-title').textContent = 'Buat Profil Talenta Baru';
-      document.getElementById('self-edit-badge').classList.add('hidden');
-      document.getElementById('cand-submit-btn').querySelector('span').textContent = 'Tayangkan Profil Otomatis';
-      document.getElementById('cand-cancel-edit').classList.add('hidden');
-    }
-
-    // ==========================================
-    // 5. LOGIKA REKRUTER: DEPOSIT & CHAT TERTUTUP
-    // ==========================================
-    function simulateDeposit() {
-      recruiterQuota += 200;
-      updateCountersUI();
-      showToast('Deposit Rp 150.000 Berhasil!', 'Kuota akses chat tertutup Anda bertambah +200 kandidat.');
-    }
-
-    function simulateNewRecruiter() {
-      recruiterCount += 1;
-      updateCountersUI();
-      showToast('Rekruter Mitra Bertambah!', 'Statistik perusahaan mitra di halaman beranda otomatis diperbarui.');
-    }
-
-    function unlockAndChat(candId) {
-      const cand = candidates.find(c => c.id === candId);
-      if (!cand) return;
-
-      if (!cand.unlocked) {
-        if (recruiterQuota <= 0) {
-          showToast('Saldo Kuota Chat Kosong', 'Silakan lakukan deposit Rp 150.000 di Area Rekruter untuk membuka akses hingga 200 kandidat.', 'error');
-          switchView('rekruter');
-          return;
-        }
-        recruiterQuota -= 1;
-        cand.unlocked = true;
-        cand.messages.push({
-          sender: 'system',
-          text: `Akses obrolan tertutup dengan ${cand.name} telah dibuka (1 kuota terpakai). Nomor WhatsApp kandidat tetap terlindungi sesuai UU PDP.`
-        });
-        updateCountersUI();
-        renderHomePreview();
-        renderTalentList();
-        renderUnlockedChats();
-        showToast('Akses Chat Terbuka!', `Sisa kuota Anda: ${recruiterQuota} kandidat.`);
-      }
-
-      openChatModal(candId);
-    }
-
-    function openChatModal(candId) {
-      const cand = candidates.find(c => c.id === candId);
-      if (!cand) return;
-
-      activeChatCandidateId = candId;
-      document.getElementById('chat-avatar').textContent = getInitials(cand.name);
-      document.getElementById('chat-target-name').textContent = `${cand.name} — ${cand.city}`;
-      renderChatMessages();
-
-      document.getElementById('chat-modal').classList.remove('hidden');
-      lucide.createIcons();
-    }
-
-    function closeChatModal() {
-      document.getElementById('chat-modal').classList.add('hidden');
-      activeChatCandidateId = null;
-    }
-
-    function renderChatMessages() {
-      const cand = candidates.find(c => c.id === activeChatCandidateId);
-      if (!cand) return;
-
-      const box = document.getElementById('chat-messages-box');
-      box.innerHTML = cand.messages.map(msg => {
-        if (msg.sender === 'system') {
-          return `
-            <div class="text-center">
-              <span class="inline-block text-[11px] bg-slate-200/80 text-slate-600 px-3 py-1.5 rounded-xl">
-                ${msg.text}
-              </span>
-            </div>
-          `;
-        }
-        if (msg.sender === 'recruiter') {
-          return `
-            <div class="flex justify-end">
-              <div class="bg-brand-600 text-white text-xs sm:text-sm px-4 py-2.5 rounded-2xl rounded-br-sm max-w-[80%] shadow-sm">
-                <p class="font-bold text-[10px] text-blue-200 mb-0.5">PT Nusantara Digital Maju (Anda)</p>
-                <p>${msg.text}</p>
+      previewContainer.innerHTML = list.slice(0, 3).map((cand, idx) => `
+        <div class="bg-white rounded-2xl border border-slate-200 p-5 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-11 h-11 rounded-xl ${avatarColors[idx % avatarColors.length]} text-white font-extrabold flex items-center justify-center shrink-0">${getInitials(cand.name)}</div>
+              <div>
+                <h3 class="font-bold text-slate-900 text-base">${cand.name}</h3>
+                <p class="text-xs text-slate-500">${cand.city} • <span class="font-semibold text-mint-600">${cand.workmode}</span></p>
               </div>
             </div>
-          `;
-        }
-        return `
-          <div class="flex justify-start">
-            <div class="bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm px-4 py-2.5 rounded-2xl rounded-bl-sm max-w-[80%] shadow-sm">
-              <p class="font-bold text-[10px] text-mint-600 mb-0.5">${cand.name}</p>
-              <p>${msg.text}</p>
-            </div>
+            <p class="font-bold text-slate-800 text-sm mb-1">${cand.headline}</p>
+            <p class="text-xs text-slate-500 mb-3">${cand.exp}</p>
           </div>
-        `;
-      }).join('');
-
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function sendChatMessage(event) {
-      event.preventDefault();
-      const input = document.getElementById('chat-input');
-      const text = input.value.trim();
-      if (!text || !activeChatCandidateId) return;
-
-      const cand = candidates.find(c => c.id === activeChatCandidateId);
-      if (!cand) return;
-
-      cand.messages.push({ sender: 'recruiter', text });
-      input.value = '';
-      renderChatMessages();
-      renderUnlockedChats();
-
-      // Simulasi balasan otomatis dari kandidat agar terasa interaktif
-      setTimeout(() => {
-        if (cand) {
-          cand.messages.push({
-            sender: 'candidate',
-            text: `Halo Bapak/Ibu HRD, terima kasih atas ketertarikannya pada profil saya. Saya siap mengikuti tahapan wawancara sesuai jadwal perusahaan.`
-          });
-          if (activeChatCandidateId === cand.id) {
-            renderChatMessages();
-          }
-          renderUnlockedChats();
-        }
-      }, 900);
-    }
-
-    function renderUnlockedChats() {
-      const container = document.getElementById('unlocked-chats-list');
-      const unlockedList = candidates.filter(c => c.unlocked);
-
-      if (unlockedList.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-10 px-4 border-2 border-dashed border-slate-200 rounded-2xl">
-            <i data-lucide="message-square-off" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
-            <p class="text-sm font-bold text-slate-700">Belum ada obrolan kandidat yang dibuka</p>
-            <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
-              Lakukan deposit Rp 150.000 di panel sebelah kiri, lalu pilih kandidat di Etalase Talenta untuk memulai chat tertutup.
-            </p>
-          </div>
-        `;
-      } else {
-        container.innerHTML = unlockedList.map(cand => {
-          const lastMsg = cand.messages[cand.messages.length - 1];
-          return `
-            <div class="p-4 rounded-xl border border-slate-200 hover:border-brand-300 bg-slate-50/60 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white font-bold text-sm flex items-center justify-center shrink-0">
-                  ${getInitials(cand.name)}
-                </div>
-                <div>
-                  <h4 class="font-bold text-sm text-slate-900">${cand.name} <span class="text-xs font-normal text-slate-500">(${cand.city})</span></h4>
-                  <p class="text-xs text-slate-600 line-clamp-1 mt-0.5">${lastMsg ? lastMsg.text : cand.headline}</p>
-                </div>
-              </div>
-              <button onclick="openChatModal('${cand.id}')" class="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold shrink-0 transition">
-                Buka Ruang Chat
-              </button>
-            </div>
-          `;
-        }).join('');
-      }
-      lucide.createIcons();
-    }
-
-    // ==========================================
-    // 6. TAB HUKUM & PRIVASI
-    // ==========================================
-    function switchLegalTab(tab) {
-      const termsTab = document.getElementById('legal-tab-terms');
-      const privacyTab = document.getElementById('legal-tab-privacy');
-      const termsContent = document.getElementById('legal-content-terms');
-      const privacyContent = document.getElementById('legal-content-privacy');
-
-      if (tab === 'terms') {
-        termsTab.className = 'flex-1 py-3.5 px-4 text-sm font-bold text-brand-600 bg-white border-b-2 border-brand-600 transition';
-        privacyTab.className = 'flex-1 py-3.5 px-4 text-sm font-bold text-slate-500 hover:text-slate-800 transition';
-        termsContent.classList.remove('hidden');
-        privacyContent.classList.add('hidden');
-      } else {
-        privacyTab.className = 'flex-1 py-3.5 px-4 text-sm font-bold text-brand-600 bg-white border-b-2 border-brand-600 transition';
-        termsTab.className = 'flex-1 py-3.5 px-4 text-sm font-bold text-slate-500 hover:text-slate-800 transition';
-        privacyContent.classList.remove('hidden');
-        termsContent.classList.add('hidden');
-      }
-    }
-
-    // ==========================================
-    // 7. INISIALISASI SAAT HALAMAN DIMUAT
-    // ==========================================
-    window.addEventListener('DOMContentLoaded', () => {
-      updateCountersUI();
-      renderHomePreview();
-      renderTalentList();
-      renderUnlockedChats();
-      switchView('beranda');
-      lucide.createIcons();
+          <a href="etalase.html" class="w-full py-2.5 px-4 rounded-xl bg-brand-50 hover:bg-brand-100 text-brand-700 font-bold text-xs text-center transition">Lihat Detail &amp; Hubungi</a>
+        </div>
+      `).join('');
     });
+
+    // Pantau jumlah rekruter riil dari Firestore
+    onSnapshot(collection(db, "rekruter"), (snapshot) => {
+      document.getElementById('counter-rekruter').textContent = snapshot.size.toLocaleString('id-ID');
+    });
+
+    lucide.createIcons();
   </script>
-  <!-- KONEKSI DATABASE FIREBASE TEMOOKAN -->
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-  // Salin rincian dari layar laptop Anda ke dalam kurung kurawal ini:
-  const firebaseConfig = {
-    apiKey: "AIzaSyAXZU6YdU-yj-KRKAUDrxyaxp-C4VZ4_E",
-    authDomain: "temookan.firebaseapp.com",
-    projectId: "temookan",
-    storageBucket: "temookan.firebasestorage.app",
-    messagingSenderId: "611561332773",
-    appId: "1:611561332773:web:838975421a525baa589fcc",
-    measurementId: "G-L0L6TKVBRX"
-  };
-
-  // Inisialisasi Firebase & Firestore untuk Temookan
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-
-  // Menyiapkan fungsi agar bisa dipanggil oleh tombol website
-  window.temookanDB = {
-    db,
-    simpanKandidat: async (dataKandidat) => {
-      return await addDoc(collection(db, "kandidat"), {
-        ...dataKandidat,
-        waktuDaftar: new Date().toISOString()
-      });
-    }
-  };
-
-  console.log("Database Temookan siap terhubung!");
-</script>
 </body>
 </html>
