@@ -1246,5 +1246,38 @@
       lucide.createIcons();
     });
   </script>
+  <!-- KONEKSI DATABASE FIREBASE TEMOOKAN -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+  // Salin rincian dari layar laptop Anda ke dalam kurung kurawal ini:
+  const firebaseConfig = {
+    apiKey: "AIzaSyAXZU6YdU-yj-KRKAUDrxyaxp-C4VZ4_E",
+    authDomain: "temookan.firebaseapp.com",
+    projectId: "temookan",
+    storageBucket: "temookan.firebasestorage.app",
+    messagingSenderId: "611561332773",
+    appId: "1:611561332773:web:838975421a525baa589fcc",
+    measurementId: "G-L0L6TKVBRX"
+  };
+
+  // Inisialisasi Firebase & Firestore untuk Temookan
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+
+  // Menyiapkan fungsi agar bisa dipanggil oleh tombol website
+  window.temookanDB = {
+    db,
+    simpanKandidat: async (dataKandidat) => {
+      return await addDoc(collection(db, "kandidat"), {
+        ...dataKandidat,
+        waktuDaftar: new Date().toISOString()
+      });
+    }
+  };
+
+  console.log("Database Temookan siap terhubung!");
+</script>
 </body>
 </html>
