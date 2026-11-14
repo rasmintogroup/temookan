@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pusat Hukum & Privasi — Temookan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#0f172a' },
+            mint: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-mint-500 flex items-center justify-center text-white font-extrabold text-lg">T</div>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900">Temoo<span class="text-mint-600">kan</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+          <a href="index.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Beranda</a>
+          <a href="etalase.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Etalase Talenta</a>
+          <a href="kandidat.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Kandidat</a>
+          <a href="rekruter.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Rekruter</a>
+          <a href="legal.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold bg-white text-brand-600 shadow-sm">Hukum &amp; Privasi</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- KONTEN UTAMA LEGAL -->
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-slate-900 text-white px-6 py-8 text-center">
+        <h1 class="text-2xl sm:text-3xl font-extrabold">Pusat Kebijakan &amp; Legalitas Temookan</h1>
+        <p class="text-sm text-slate-300 mt-2 max-w-xl mx-auto">
+          Kepatuhan terhadap UU Ketenagakerjaan, UU ITE, dan UU Pelindungan Data Pribadi (UU PDP No. 27 Tahun 2022).
+        </p>
+      </div>
+
+      <div class="p-6 sm:p-8 text-sm text-slate-700 leading-relaxed space-y-6">
+        <div>
+          <h2 class="text-base font-bold text-slate-900 mb-1">1. Posisi &amp; Penafian Hukum (Bukan P3MI/LPTKS)</h2>
+          <p>Temookan adalah platform digital berbasis <em>reverse job board</em> yang berperan murni sebagai penyedia ruang temu elektronik sesuai koridor <strong>UU ITE</strong>. Temookan <strong>bukan</strong> agen penyalur tenaga kerja berlisensi (P3MI/LPTKS) dan tidak memungut biaya penempatan dari pencari kerja.</p>
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-slate-900 mb-1">2. Ketentuan Kandidat (Tanpa Foto &amp; Edit Mandiri)</h2>
+          <p>Kandidat menjamin keaslian riwayat keahlian yang dicantumkan. Platform tidak mewajibkan foto profil demi menjaga kecepatan akses serta mencegah bias visual. Kandidat bertanggung jawab memperbarui datanya secara mandiri jika terdapat kekeliruan.</p>
+        </div>
+        <div>
+          <h2 class="text-base font-bold text-slate-900 mb-1">3. Minimalisasi Data &amp; Perlindungan Nomor WhatsApp (UU PDP)</h2>
+          <p>Sesuai amanat UU PDP, Temookan tidak menampilkan nomor WhatsApp maupun email pribadi secara terbuka. Komunikasi awal wajib melalui ruang obrolan tertutup internal platform yang dikelola secara transparan dan aman.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-500">
+      &copy; 2026 Temookan. Reverse Job Board Indonesia.
+    </div>
+  </footer>
+
+  <script>lucide.createIcons();</script>
+</body>
+</html>
