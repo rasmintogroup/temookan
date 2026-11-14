@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Area Kandidat — Temookan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#0f172a' },
+            mint: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+  <!-- TOAST NOTIFIKASI -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-mint-500 flex items-center justify-center text-white font-extrabold text-lg">T</div>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900">Temoo<span class="text-mint-600">kan</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+          <a href="index.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Beranda</a>
+          <a href="etalase.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Etalase Talenta</a>
+          <a href="kandidat.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold bg-white text-brand-600 shadow-sm">Area Kandidat</a>
+          <a href="rekruter.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Rekruter</a>
+          <a href="legal.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Hukum &amp; Privasi</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- KONTEN UTAMA FORM KANDIDAT -->
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full">
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-gradient-to-r from-brand-700 to-brand-500 px-6 py-6 text-white">
+        <span class="inline-block text-xs font-bold uppercase tracking-wider bg-white/20 px-2.5 py-1 rounded-full mb-2">Area Kandidat • Tayang Otomatis</span>
+        <h1 class="text-2xl font-extrabold">Buat Profil Talenta Baru</h1>
+        <p class="text-sm text-blue-100 mt-1">Tanpa unggah foto agar super ringan. Data langsung tersimpan di database Firestore.</p>
+      </div>
+
+      <form id="candidate-form" class="p-6 space-y-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Nama Lengkap *</label>
+            <input type="text" id="cand-name" required placeholder="Contoh: Rina Marlina" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Domisili (Kota) *</label>
+            <select id="cand-city" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="Jakarta">Jakarta</option>
+              <option value="Bandung">Bandung</option>
+              <option value="Surabaya">Surabaya</option>
+              <option value="Yogyakarta">Yogyakarta</option>
+              <option value="Batam">Batam</option>
+              <option value="Medan">Medan</option>
+              <option value="Makassar">Makassar</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Headline Profesi / Posisi Diincar *</label>
+          <input type="text" id="cand-headline" required placeholder="Contoh: Staf Akuntansi & Pajak | Mahir Excel" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Preferensi Sistem Kerja *</label>
+            <select id="cand-workmode" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="WFO">WFO (Kantor)</option>
+              <option value="Remote">Remote (Jarak Jauh)</option>
+              <option value="Hybrid">Hybrid</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold text-slate-700 mb-1.5">Pendidikan / Pengalaman Singkat *</label>
+            <input type="text" id="cand-exp" required placeholder="Contoh: S1 Akuntansi • 2 Tahun Pengalaman" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Keahlian Utama / Skills (Pisahkan dengan koma) *</label>
+          <input type="text" id="cand-skills" required placeholder="Contoh: Microsoft Excel, Pajak Brevet A/B, Pembukuan" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+        </div>
+
+        <div>
+          <label class="block text-sm font-semibold text-slate-700 mb-1.5">Ringkasan Diri &amp; Keunggulan (Tanpa Foto) *</label>
+          <textarea id="cand-bio" rows="3" required placeholder="Jelaskan secara singkat keunggulan Anda..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:ring-2 focus:ring-brand-500 focus:outline-none"></textarea>
+        </div>
+
+        <div class="p-4 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
+          <i data-lucide="shield-check" class="w-5 h-5 text-mint-600 shrink-0 mt-0.5"></i>
+          <div class="text-xs sm:text-sm text-emerald-900">
+            <strong>Jaminan Privasi UU PDP:</strong> Nomor WhatsApp Anda tidak dipajang bebas. Perusahaan hanya dapat menghubungi melalui sistem chat tertutup.
+          </div>
+        </div>
+
+        <label class="flex items-start gap-2.5 cursor-pointer">
+          <input type="checkbox" id="cand-agree" required class="mt-1 w-4 h-4 text-brand-600 rounded border-slate-300" />
+          <span class="text-xs sm:text-sm text-slate-600">
+            Saya menyatakan data di atas benar, usia legal angkatan kerja, dan menyetujui <a href="legal.html" class="text-brand-600 font-semibold underline">Syarat &amp; Ketentuan</a> Temookan.
+          </span>
+        </label>
+
+        <button type="submit" id="submit-btn" class="w-full py-3.5 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-sm shadow-md transition flex items-center justify-center gap-2">
+          <i data-lucide="check-circle-2" class="w-4 h-4"></i> Tayangkan Profil Otomatis ke Database
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-500">
+      &copy; 2026 Temookan. Reverse Job Board Indonesia.
+    </div>
+  </footer>
+
+  <!-- SCRIPT KONEKSI & SUBMIT FIREBASE -->
+  <script type="module">
+    import { db } from "./firebase-config.js";
+    import { collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    function showToast(title, message, type = 'success') {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `pointer-events-auto p-4 rounded-2xl border shadow-lg bg-white text-slate-900 flex items-start gap-3`;
+      toast.innerHTML = `<div class="text-xs sm:text-sm"><p class="font-bold">${title}</p><p class="text-slate-600 mt-0.5">${message}</p></div>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    document.getElementById('candidate-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = "Menyimpan ke Database...";
+
+      const dataBaru = {
+        name: document.getElementById('cand-name').value.trim(),
+        city: document.getElementById('cand-city').value,
+        headline: document.getElementById('cand-headline').value.trim(),
+        workmode: document.getElementById('cand-workmode').value,
+        exp: document.getElementById('cand-exp').value.trim(),
+        skills: document.getElementById('cand-skills').value.split(',').map(s => s.trim()).filter(Boolean),
+        bio: document.getElementById('cand-bio').value.trim(),
+        waktuDaftar: new Date().toISOString()
+      };
+
+      try {
+        await addDoc(collection(db, "kandidat"), dataBaru);
+        showToast("Profil Berhasil Ditayangkan!", "Data Anda telah masuk ke database Firestore Temookan.");
+        setTimeout(() => {
+          window.location.href = "etalase.html";
+        }, 1500);
+      } catch (err) {
+        console.error(err);
+        showToast("Gagal Menyimpan", "Terjadi kesalahan koneksi database.", "error");
+        btn.disabled = false;
+        btn.textContent = "Tayangkan Profil Otomatis ke Database";
+      }
+    });
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
