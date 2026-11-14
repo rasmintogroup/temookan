@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Area Rekruter — Temookan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#eff6ff', 100: '#dbeafe', 500: '#2563eb', 600: '#1d4ed8', 700: '#1e40af', 900: '#0f172a' },
+            mint: { 50: '#ecfdf5', 100: '#d1fae5', 500: '#10b981', 600: '#059669' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }</style>
+</head>
+<body class="antialiased flex flex-col min-h-screen">
+
+  <!-- TOAST NOTIFIKASI -->
+  <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-[calc(100%-2.5rem)] pointer-events-none"></div>
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="flex items-center gap-2">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-brand-600 to-mint-500 flex items-center justify-center text-white font-extrabold text-lg">T</div>
+          <span class="text-xl font-extrabold tracking-tight text-slate-900">Temoo<span class="text-mint-600">kan</span></span>
+        </a>
+        <nav class="hidden md:flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
+          <a href="index.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Beranda</a>
+          <a href="etalase.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Etalase Talenta</a>
+          <a href="kandidat.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Kandidat</a>
+          <a href="rekruter.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold bg-white text-brand-600 shadow-sm">Area Rekruter</a>
+          <a href="legal.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Hukum &amp; Privasi</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- KONTEN UTAMA REKRUTER -->
+  <main class="flex-grow max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Panel Kiri: Saldo & Deposit -->
+      <div class="lg:col-span-1 space-y-5">
+        <div class="bg-slate-900 text-white rounded-2xl p-6 shadow-lg">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-bold uppercase tracking-wider text-mint-400 bg-mint-500/15 px-2.5 py-1 rounded-full">Perusahaan Mitra</span>
+            <i data-lucide="building-2" class="w-5 h-5 text-slate-400"></i>
+          </div>
+          <h2 class="text-lg font-bold">PT Nusantara Digital Maju</h2>
+          <p class="text-xs text-slate-400 mt-0.5">Status: Terverifikasi (Anti Loker Fiktif)</p>
+
+          <div class="mt-6 pt-5 border-t border-slate-800">
+            <p class="text-xs text-slate-400">Sisa Kuota Akses Chat Kandidat</p>
+            <div class="flex items-baseline gap-2 mt-1">
+              <span id="recruiter-quota" class="text-4xl font-extrabold text-mint-400">0</span>
+              <span class="text-sm text-slate-300">Kandidat</span>
+            </div>
+          </div>
+
+          <div class="mt-6 bg-slate-800/80 rounded-xl p-4 border border-slate-700">
+            <div class="flex items-center justify-between text-sm font-bold text-white mb-1">
+              <span>Paket Deposit Standar</span>
+              <span class="text-mint-400">Rp 150.000</span>
+            </div>
+            <p class="text-xs text-slate-300 leading-relaxed mb-3.5">
+              Buka akses chat tertutup hingga <strong>200 kandidat</strong> pilihan sesuai regulasi ketenagakerjaan.
+            </p>
+            <button onclick="simulateDeposit()" class="w-full py-3 px-4 rounded-xl bg-mint-500 hover:bg-mint-600 text-slate-950 font-extrabold text-sm transition shadow-md flex items-center justify-center gap-2">
+              <i data-lucide="plus-circle" class="w-4 h-4"></i> Deposit Rp 150.000 (+200 Akses)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel Kanan: Ruang Chat Tertutup -->
+      <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">Ruang Chat Tertutup Perusahaan</h2>
+            <p class="text-xs sm:text-sm text-slate-500 mt-0.5">Obrolan langsung dengan kandidat tanpa membocorkan nomor WhatsApp (UU PDP).</p>
+          </div>
+          <a href="etalase.html" class="px-3.5 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold transition">
+            + Cari Kandidat
+          </a>
+        </div>
+
+        <div id="chat-list" class="space-y-3">
+          <div class="text-center py-10 px-4 border-2 border-dashed border-slate-200 rounded-2xl">
+            <i data-lucide="message-square-off" class="w-8 h-8 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-bold text-slate-700">Belum ada obrolan kandidat aktif</p>
+            <p class="text-xs text-slate-500 mt-1 max-w-md mx-auto">
+              Lakukan deposit saldo di panel samping, lalu pilih kandidat dari <a href="etalase.html" class="text-brand-600 font-bold underline">Etalase Talenta</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-500">
+      &copy; 2026 Temookan. Reverse Job Board Indonesia.
+    </div>
+  </footer>
+
+  <!-- SCRIPT REKRUTER -->
+  <script>
+    let quota = 0;
+
+    function showToast(title, message) {
+      const container = document.getElementById('toast-container');
+      const toast = document.createElement('div');
+      toast.className = `pointer-events-auto p-4 rounded-2xl border shadow-lg bg-white text-slate-900 flex items-start gap-3`;
+      toast.innerHTML = `<div class="text-xs sm:text-sm"><p class="font-bold">${title}</p><p class="text-slate-600 mt-0.5">${message}</p></div>`;
+      container.appendChild(toast);
+      setTimeout(() => toast.remove(), 4000);
+    }
+
+    function simulateDeposit() {
+      quota += 200;
+      document.getElementById('recruiter-quota').textContent = quota;
+      showToast("Deposit Rp 150.000 Berhasil!", "Kuota akses chat tertutup Anda bertambah +200 kandidat.");
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
