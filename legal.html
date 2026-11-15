@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pusat Hukum & Privasi — Temookan</title>
+  <title>Pusat Kebijakan, Syarat & Ketentuan, dan Legalitas — Temookan</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -39,41 +39,168 @@
           <a href="rekruter.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold text-slate-700 hover:text-slate-900">Area Rekruter</a>
           <a href="legal.html" class="px-3.5 py-2 rounded-lg text-sm font-semibold bg-white text-brand-600 shadow-sm">Hukum &amp; Privasi</a>
         </nav>
+        <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="md:hidden p-2.5 rounded-xl text-slate-600 hover:bg-slate-100">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
       </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 py-3 space-y-1.5 shadow-lg">
+      <a href="index.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700">Beranda</a>
+      <a href="etalase.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700">Etalase Talenta</a>
+      <a href="kandidat.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700">Area Kandidat</a>
+      <a href="rekruter.html" class="block px-4 py-3 rounded-xl text-sm font-semibold text-slate-700">Area Rekruter</a>
+      <a href="legal.html" class="block px-4 py-3 rounded-xl text-sm font-bold text-brand-600 bg-brand-50">Hukum &amp; Privasi</a>
     </div>
   </header>
 
   <!-- KONTEN UTAMA LEGAL -->
-  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full">
-    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-      <div class="bg-slate-900 text-white px-6 py-8 text-center">
-        <h1 class="text-2xl sm:text-3xl font-extrabold">Pusat Kebijakan &amp; Legalitas Temookan</h1>
-        <p class="text-sm text-slate-300 mt-2 max-w-xl mx-auto">
-          Kepatuhan terhadap UU Ketenagakerjaan, UU ITE, dan UU Pelindungan Data Pribadi (UU PDP No. 27 Tahun 2022).
-        </p>
+  <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 w-full space-y-6">
+    
+    <!-- Banner Header -->
+    <div class="bg-slate-900 text-white rounded-2xl px-6 py-8 sm:px-10 sm:py-10 shadow-md">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-mint-500/20 text-mint-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <i data-lucide="shield-check" class="w-4 h-4"></i> Dokumen Tata Kelola Resmi
       </div>
+      <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight">Pusat Kebijakan, Syarat &amp; Ketentuan, serta Legalitas Temookan</h1>
+      <p class="text-xs sm:text-sm text-slate-300 mt-2.5 leading-relaxed max-w-2xl">
+        Pembaruan Terakhir: November 2026 • Dokumen ini mengatur hak, kewajiban, tata cara penggunaan, serta perlindungan hukum bagi seluruh pengguna platform Temookan sesuai peraturan perundang-undangan di Republik Indonesia.
+      </p>
 
-      <div class="p-6 sm:p-8 text-sm text-slate-700 leading-relaxed space-y-6">
-        <div>
-          <h2 class="text-base font-bold text-slate-900 mb-1">1. Posisi &amp; Penafian Hukum (Bukan P3MI/LPTKS)</h2>
-          <p>Temookan adalah platform digital berbasis <em>reverse job board</em> yang berperan murni sebagai penyedia ruang temu elektronik sesuai koridor <strong>UU ITE</strong>. Temookan <strong>bukan</strong> agen penyalur tenaga kerja berlisensi (P3MI/LPTKS) dan tidak memungut biaya penempatan dari pencari kerja.</p>
-        </div>
-        <div>
-          <h2 class="text-base font-bold text-slate-900 mb-1">2. Ketentuan Kandidat (Tanpa Foto &amp; Edit Mandiri)</h2>
-          <p>Kandidat menjamin keaslian riwayat keahlian yang dicantumkan. Platform tidak mewajibkan foto profil demi menjaga kecepatan akses serta mencegah bias visual. Kandidat bertanggung jawab memperbarui datanya secara mandiri jika terdapat kekeliruan.</p>
-        </div>
-        <div>
-          <h2 class="text-base font-bold text-slate-900 mb-1">3. Minimalisasi Data &amp; Perlindungan Nomor WhatsApp (UU PDP)</h2>
-          <p>Sesuai amanat UU PDP, Temookan tidak menampilkan nomor WhatsApp maupun email pribadi secara terbuka. Komunikasi awal wajib melalui ruang obrolan tertutup internal platform yang dikelola secara transparan dan aman.</p>
-        </div>
+      <!-- Navigasi Cepat Lompat Bagian -->
+      <div class="flex flex-wrap gap-2 mt-6 pt-5 border-t border-slate-800 text-xs font-semibold">
+        <a href="#bagian-definisi" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">1. Definisi &amp; Peran</a>
+        <a href="#bagian-cara-pakai" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">2. Cara Penggunaan</a>
+        <a href="#bagian-syarat" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">3. Syarat &amp; Batasan</a>
+        <a href="#bagian-privasi" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">4. Kebijakan Privasi (UU PDP)</a>
+        <a href="#bagian-legal" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 transition">5. Penafian Hukum</a>
       </div>
+    </div>
+
+    <!-- ISI DOKUMEN LENGKAP -->
+    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-10 text-sm text-slate-700 leading-relaxed space-y-10">
+
+      <!-- BAGIAN 1: DEFINISI -->
+      <section id="bagian-definisi" class="scroll-mt-24 space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-slate-100 pb-2.5">
+          <span class="w-7 h-7 rounded-lg bg-brand-50 text-brand-600 font-extrabold flex items-center justify-center text-xs">1</span>
+          <h2 class="text-lg font-extrabold text-slate-900">Definisi &amp; Pihak dalam Ekosistem Temookan</h2>
+        </div>
+        <p>Agar tidak terjadi kesalahpahaman dalam menggunakan layanan kami, berikut adalah pengertian resmi dari istilah-istilah yang digunakan di seluruh situs <strong>Temookan</strong>:</p>
+        <ul class="list-disc pl-5 space-y-2 text-slate-700">
+          <li><strong>Temookan (Platform):</strong> Sistem elektronik berbasis konsep <em>Reverse Job Board</em> (bursa kerja terbalik) yang menyediakan etalase digital bagi pencari kerja untuk menampilkan profil keahlian mereka agar dapat ditemukan secara langsung oleh perusahaan atau pemberi kerja.</li>
+          <li><strong>Kandidat (Talenta):</strong> Warga Negara Indonesia (WNI) yang telah memenuhi batas usia legal angkatan kerja sesuai undang-undang, yang secara sadar dan sukarela mendaftarkan profil keahlian, pengalaman, serta preferensi kerjanya (baik WFO, Remote, Hybrid, Part-Time, maupun Freelance) ke dalam database Temookan secara gratis.</li>
+          <li><strong>Rekruter (Perusahaan / Pemberi Kerja):</strong> Badan usaha (PT, CV, Yayasan, UMKM), instansi, maupun pelaku usaha terverifikasi yang membutuhkan tenaga kerja atau mitra proyek, dan menggunakan layanan Temookan untuk mencari serta menghubungi Kandidat.</li>
+          <li><strong>Ruang Chat Tertutup:</strong> Fitur komunikasi internal di dalam situs Temookan yang menjadi satu-satunya jalur perkenalan awal antara Rekruter dan Kandidat tanpa membuka nomor kontak pribadi secara sembarangan.</li>
+          <li><strong>Kuota Akses Deposit:</strong> Hak akses prabayar yang dimiliki oleh Rekruter setelah melakukan pembelian paket deposit untuk membuka jalur komunikasi tertutup dengan sejumlah Kandidat sesuai paket yang dipilih.</li>
+        </ul>
+      </section>
+
+      <!-- BAGIAN 2: TATA CARA PENGGUNAAN -->
+      <section id="bagian-cara-pakai" class="scroll-mt-24 space-y-4">
+        <div class="flex items-center gap-2.5 border-b border-slate-100 pb-2.5">
+          <span class="w-7 h-7 rounded-lg bg-brand-50 text-brand-600 font-extrabold flex items-center justify-center text-xs">2</span>
+          <h2 class="text-lg font-extrabold text-slate-900">Tata Cara Penggunaan Platform</h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+            <h3 class="font-bold text-slate-900 flex items-center gap-1.5">
+              <i data-lucide="user-check" class="w-4 h-4 text-brand-600"></i> Alur bagi Kandidat (Gratis)
+            </h3>
+            <ol class="list-decimal pl-4 space-y-1.5 text-xs text-slate-600">
+              <li>Buka halaman <strong>Area Kandidat</strong> dan isi data keahlian, kota domisili, serta sistem kerja yang diinginkan.</li>
+              <li><strong>Tanpa Unggah Foto:</strong> Demi kecepatan akses perangkat dan pencegahan diskriminasi visual, kandidat tidak diminta mengunggah foto profil.</li>
+              <li>Profil otomatis tayang di halaman <strong>Etalase Talenta</strong> dan langsung dapat dicari oleh perusahaan.</li>
+              <li>Perangkat Anda akan dikenali otomatis. Kapan saja Anda bisa mengedit profil secara mandiri atau menghapus profil jika sudah mendapatkan pekerjaan.</li>
+              <li>Pantau <strong>Kotak Masuk</strong> di Area Kandidat untuk membalas panggilan wawancara dari perusahaan.</li>
+            </ol>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2">
+            <h3 class="font-bold text-slate-900 flex items-center gap-1.5">
+              <i data-lucide="building-2" class="w-4 h-4 text-mint-600"></i> Alur bagi Rekruter / Perusahaan
+            </h3>
+            <ol class="list-decimal pl-4 space-y-1.5 text-xs text-slate-600">
+              <li>Daftarkan identitas perusahaan/instansi pada halaman <strong>Area Rekruter</strong> menggunakan email resmi.</li>
+              <li>Telusuri kandidat di halaman <strong>Etalase Talenta</strong> menggunakan filter keahlian, kota seluruh Indonesia, dan jenis kerja.</li>
+              <li>Pilih paket deposit kuota akses (Standar, Bisnis, atau Korporat) dan lakukan konfirmasi pembayaran melalui Admin resmi Temookan.</li>
+              <li>Gunakan kuota untuk mengeklik tombol <strong>Buka Akses Chat Tertutup</strong> pada kandidat yang sesuai kriteria.</li>
+              <li>Sampaikan tawaran kerja atau jadwal wawancara secara sopan dan transparan melalui Ruang Chat Tertutup.</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAGIAN 3: SYARAT, KETENTUAN & BATASAN -->
+      <section id="bagian-syarat" class="scroll-mt-24 space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-slate-100 pb-2.5">
+          <span class="w-7 h-7 rounded-lg bg-brand-50 text-brand-600 font-extrabold flex items-center justify-center text-xs">3</span>
+          <h2 class="text-lg font-extrabold text-slate-900">Syarat, Ketentuan, dan Batasan Penggunaan</h2>
+        </div>
+
+        <div class="space-y-3">
+          <div>
+            <h3 class="font-bold text-slate-900">A. Batas Usia Minimal (Kepatuhan UU Ketenagakerjaan)</h3>
+            <p>Sesuai dengan <strong>Undang-Undang No. 13 Tahun 2003 tentang Ketenagakerjaan</strong> beserta perubahannya dalam UU Cipta Kerja, pengguna yang mendaftar sebagai Kandidat wajib berusia minimal <strong>18 (delapan belas) tahun</strong>. Temookan melarang keras segala bentuk pendaftaran maupun perekrutan pekerja anak di bawah umur.</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900">B. Larangan Pungutan Liar &amp; Penipuan Lowongan</h3>
+            <p>Perusahaan/Rekruter <strong>dilarang keras</strong> meminta imbalan uang, biaya administrasi, biaya seragam, biaya transportasi/akomodasi awal, atau melakukan penipuan berkedok lowongan kerja kepada Kandidat. Apabila ditemukan indikasi penipuan, Temookan berhak memblokir akun Rekruter secara permanen tanpa pengembalian sisa saldo deposit, serta menyerahkan data pelanggaran kepada pihak berwajib.</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900">C. Keaslian Data &amp; Konten yang Dilarang</h3>
+            <p>Kandidat wajib mencantumkan keahlian dan pengalaman secara jujur tanpa pemalsuan identitas. Pengguna dilarang memasukkan kata-kata kasar, unsur SARA, pornografi, perjudian, maupun tautan berbahaya (*phishing/malware*) di kolom ringkasan profil maupun di dalam ruang obrolan.</p>
+          </div>
+
+          <div>
+            <h3 class="font-bold text-slate-900">D. Kebijakan Deposit &amp; Kuota Akses Rekruter</h3>
+            <p>Kuota akses yang telah dibeli oleh Rekruter hanya berkurang apabila Rekruter secara sadar menekan tombol pembukaan akses chat pada suatu profil Kandidat. Kuota yang telah dibeli tidak memiliki masa kedaluwarsa selama akun perusahaan aktif dan mematuhi aturan, namun dana deposit yang sudah masuk tidak dapat diuangkan kembali (*non-refundable*).</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAGIAN 4: KEBIJAKAN PRIVASI (UU PDP) -->
+      <section id="bagian-privasi" class="scroll-mt-24 space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-slate-100 pb-2.5">
+          <span class="w-7 h-7 rounded-lg bg-mint-50 text-mint-600 font-extrabold flex items-center justify-center text-xs">4</span>
+          <h2 class="text-lg font-extrabold text-slate-900">Kebijakan Privasi &amp; Pelindungan Data Pribadi (UU PDP)</h2>
+        </div>
+        <p>Temookan menjunjung tinggi hak privasi pengguna dan tunduk penuh pada <strong>Undang-Undang No. 27 Tahun 2022 tentang Pelindungan Data Pribadi (UU PDP)</strong> melalui prinsip-prinsip berikut:</p>
+        <ul class="list-disc pl-5 space-y-2 text-slate-700">
+          <li><strong>Prinsip Minimalisasi Data:</strong> Kami hanya mengumpulkan data yang benar-benar relevan untuk kebutuhan evaluasi keahlian kerja (Nama, Kota Domisili, Headline Profesi, Keahlian, dan Ringkasan Pengalaman). Kami <strong>tidak</strong> meminta data sensitif seperti Nomor Induk Kependudukan (NIK), foto KTP, nomor rekening, maupun foto wajah.</li>
+          <li><strong>Perlindungan Kontak Pribadi (Anti-Spam):</strong> Nomor WhatsApp dan alamat email pribadi Kandidat tidak pernah ditampilkan secara publik di internet untuk mencegah penyalahgunaan data (*scraping*), telemarketing ilegal, maupun penipuan.</li>
+          <li><strong>Kendali Penuh Pemilik Data (Hak Subjek Data):</strong> Sesuai Pasal 8 dan Pasal 11 UU PDP, Kandidat memiliki hak penuh untuk mengakses, memperbarui (mengedit secara mandiri), atau menghapus secara permanen seluruh data profilnya dari database Temookan kapan saja melalui perangkatnya.</li>
+          <li><strong>Larangan Penyebarluasan Data oleh Rekruter:</strong> Rekruter dilarang keras memperjualbelikan, menyebarluaskan, atau menyalin database profil Kandidat Temookan kepada pihak ketiga di luar kepentingan rekrutmen internal perusahaan.</li>
+        </ul>
+      </section>
+
+      <!-- BAGIAN 5: PENAFIAN & BATASAN HUKUM -->
+      <section id="bagian-legal" class="scroll-mt-24 space-y-3">
+        <div class="flex items-center gap-2.5 border-b border-slate-100 pb-2.5">
+          <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 font-extrabold flex items-center justify-center text-xs">5</span>
+          <h2 class="text-lg font-extrabold text-slate-900">Landasan Hukum &amp; Penafian Tanggung Jawab (Disclaimer)</h2>
+        </div>
+        <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200/80 text-slate-800 space-y-2.5 text-xs sm:text-sm">
+          <p><strong>1. Status Penyelenggara Sistem Elektronik (UU ITE):</strong> Temookan beroperasi secara sah sebagai Penyelenggara Sistem Elektronik (PSE) ruang temu digital sesuai koridor <strong>UU No. 11 Tahun 2008 tentang Informasi dan Transaksi Elektronik (UU ITE)</strong> beserta perubahannya. Temookan <strong>bukan</strong> lembaga penyalur tenaga kerja berlisensi (bukan LPTKS maupun P3MI) dan tidak bertindak sebagai agen outsourcing.</p>
+          <p><strong>2. Batasan Tanggung Jawab Hubungan Kerja:</strong> Temookan hanya memfasilitasi perkenalan awal antara Kandidat dan Rekruter. Segala bentuk proses seleksi lanjutan, negosiasi gaji, perjanjian kontrak kerja (PKWT/PKWTT/Freelance), serta pelaksanaan hak dan kewajiban kerja merupakan tanggung jawab hukum sepenuhnya antara Kandidat dan Perusahaan terkait.</p>
+          <p><strong>3. Kewaspadaan Pengguna:</strong> Kandidat diimbau untuk selalu memverifikasi legalitas perusahaan saat diundang wawancara langsung (luring) dan tidak pernah mentransfer sejumlah uang dalam bentuk apa pun kepada pihak yang mengaku sebagai perekrut.</p>
+        </div>
+      </section>
+
     </div>
   </main>
 
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-200 mt-auto">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-center text-xs text-slate-500">
-      &copy; 2026 Temookan. Reverse Job Board Indonesia.
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      <div>&copy; 2026 Temookan. Reverse Job Board Indonesia. Seluruh Hak Dilindungi Undang-Undang.</div>
+      <div class="flex gap-4 font-semibold text-slate-600">
+        <a href="index.html" class="hover:text-brand-600">Beranda</a>
+        <a href="etalase.html" class="hover:text-brand-600">Etalase Talenta</a>
+        <a href="kandidat.html" class="hover:text-brand-600">Area Kandidat</a>
+      </div>
     </div>
   </footer>
 
